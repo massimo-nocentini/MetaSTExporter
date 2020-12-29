@@ -30,12 +30,11 @@ Class {
 	#category : #MetaSTExporter
 }
 
-{ #category : #evaluating }
+{ #category : #encoding }
 DocBuilder >> encodeClass: aClass [
 
 	| aDictionary |
 	aDictionary := Dictionary new.
-
 	^ aDictionary
 		  at: #definition put: aClass definition;
 		  at: #comment put: aClass comment lines;
@@ -44,7 +43,7 @@ DocBuilder >> encodeClass: aClass [
 		  yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #encoding }
 DocBuilder >> encodeCompiledMethod: each ofSelector: aSelector [
 
 	^ Dictionary new
@@ -57,63 +56,46 @@ DocBuilder >> encodeCompiledMethod: each ofSelector: aSelector [
 		  "codeForNoSource"yourself
 ]
 
-{ #category : #evaluating }
-DocBuilder >> encodeSelector: aSelector [
-
-	| aDictionary |
-	aDictionary := Dictionary new.
-
-	^ aDictionary
-		  at: #implementors
-		  put: (aSelector implementors collect: [ :each | 
-					   each methodClass
-					   -> (self encodeCompiledMethod: each ofSelector: aSelector) ])
-				  asDictionary;
-		  at: #senders
-		  put: (aSelector senders collect: [ :each | each name ] as: Array);
-		  yourself
-]
-
-{ #category : #evaluating }
+{ #category : #encoding }
 DocBuilder >> encodeSelector: aSelector inDictionary: aDictionary [
 
-	| compiledMethods newDict |
+	| compiledMethods selectorDict |
+	selectorDict := (aDictionary at: #messages)
+		                at: aSelector
+		                ifAbsentPut: [ 
+			                Dictionary new
+				                at: #implementors put: Dictionary new;
+				                yourself ].
 	compiledMethods := aSelector implementors
 		                   ifEmpty: [ 
 		                   Error signal: aSelector , ' has no implementors.' ]
 		                   ifNotEmpty: [ :implementors | 
+			                   | implementorsDict |
+			                   implementorsDict := selectorDict at:
+				                                       #implementors.
 			                   implementors select: [ :each | 
-				                   (aDictionary at: #messages)
-					                   at: aSelector
-					                   ifPresent: [ :selectorDict | 
-						                   (selectorDict at: #implementors)
-							                   at: each methodClass name
-							                   ifPresent: [ :messageDict | 
-							                   (messageDict at: #hash) ~= each hash ]
-							                   ifAbsent: [ true ] ]
+				                   implementorsDict
+					                   at: each methodClass
+					                   ifPresent: [ :messageDict | 
+					                   (messageDict at: #hash) ~= each hash ]
 					                   ifAbsent: [ true ] ] ].
-	newDict := (compiledMethods collect: [ :each | 
-		            each methodClass
-		            ->
-		            (self encodeCompiledMethod: each ofSelector: aSelector) ])
-		           asDictionary.
-	newDict keysAndValuesDo: [ :k :v | 
-		| dict |
-		dict := (aDictionary at: #messages) at: aSelector ifAbsentPut: [ 
-			        Dictionary new
-				        at: #implementors put: Dictionary new;
-				        yourself ].
-		(dict at: #implementors) at: k put: v ].
-	^ ((aDictionary at: #messages) at: aSelector)
+	compiledMethods
+		do: [ :each | 
+			(selectorDict at: #implementors)
+				at: each methodClass
+				put: (self encodeCompiledMethod: each ofSelector: aSelector) ]
+		displayingProgress: [ :each | each printString ].
+
+	^ selectorDict
 		  at: #senders
 		  put: (aSelector senders collect: [ :each | each name ] as: Array);
 		  yourself
 ]
 
-{ #category : #evaluating }
+{ #category : #export }
 DocBuilder >> exportInFileReference: aFileReference [
 
-	| json |
+	| json messages |
 	json := aFileReference exists
 		        ifTrue: [ 
 			        aFileReference readStreamDo: [ :readStream | 
@@ -125,22 +107,34 @@ DocBuilder >> exportInFileReference: aFileReference [
 				        yourself ].
 	(json at: #messages) valuesDo: [ :aDict | 
 		(aDict at: #implementors) in: [ :childDict | 
-			childDict associations do: [ :anAssoc | 
-				| className |
-				className := (anAssoc key endsWith: ' class')
-					             ifTrue: [ (anAssoc key splitOn: ' class') first ]
-					             ifFalse: [ anAssoc key ].
-				childDict
-					at: (Smalltalk at: className asSymbol)
-					put: anAssoc value.
-				childDict removeKey: anAssoc key ] ] ].
-	json := self valueUsingDictionary: json.
+			childDict associations
+				do: [ :anAssoc | 
+					| class |
+					class := (anAssoc key endsWith: ' class')
+						         ifTrue: [ 
+							         | className |
+							         className := (anAssoc key splitOn: ' class') first.
+							         (Smalltalk at: className asSymbol) class ]
+						         ifFalse: [ Smalltalk at: anAssoc key asSymbol ].
+					childDict at: class put: anAssoc value.
+					childDict removeKey: anAssoc key ]
+				displayingProgress: [ :each | 'Reified class ' , each key ] ] ].
+	messages := self valueUsingDictionary: json.
+	messages valuesDo: [ :each | 
+		(each at: #implementors) in: [ :aDict | 
+			each
+				at: #implementors
+				put: (aDict associations collect: [ :anAssoc | 
+						 anAssoc key name -> anAssoc value ]) asDictionary ] ].
+	json at: #messages put: messages.
+
 	aFileReference writeStreamDo: [ :writeStream | 
 		STONJSON put: json onStreamPretty: writeStream ].
+
 	^ json
 ]
 
-{ #category : #evaluating }
+{ #category : #export }
 DocBuilder >> exportWithRepositoryPath: aBlock ofPackage: aPackage [
 
 	| aPath |
@@ -157,61 +151,26 @@ DocBuilder >> selectors: anObject [
 ]
 
 { #category : #evaluating }
-DocBuilder >> value [
-
-	| aDictionary messages classes |
-	aDictionary := Dictionary new.
-	messages := (selectors collect: [ :eachSelector | 
-		             eachSelector -> (self encodeSelector: eachSelector) ])
-		            asDictionary.
-
-
-	classes := (messages values collect: [ :each | 
-		            each at: #implementors ]) flatCollect: #keys as: Set.
-	aDictionary
-		at: #classes
-		put:
-			(classes collect: [ :each | each name -> (self encodeClass: each) ])
-				asDictionary.
-
-	messages valuesDo: [ :each | 
-		each at: #implementors ifPresent: [ :aDict | 
-			each
-				at: #implementors
-				put: (aDict associations collect: [ :anAssoc | 
-						 anAssoc key name -> anAssoc value ]) asDictionary ] ].
-	aDictionary at: #messages put: messages.
-
-	^ aDictionary
-]
-
-{ #category : #evaluating }
 DocBuilder >> valueUsingDictionary: aDictionary [
 
 	| messages classes |
-	messages := (selectors collect: [ :eachSelector | 
-		             eachSelector
-		             ->
-		             (self
-			              encodeSelector: eachSelector
-			              inDictionary: aDictionary) ]) asDictionary.
-
+	
+	messages := Dictionary new.
+	selectors
+		do: [ :eachSelector | 
+			messages
+				at: eachSelector
+				put: (self encodeSelector: eachSelector inDictionary: aDictionary) ]
+		displayingProgress: [ :each | 'Exporting selector: #' , each ].
 
 	classes := (messages values collect: [ :each | 
 		            each at: #implementors ]) flatCollect: #keys as: Set.
-	aDictionary
-		at: #classes
-		put:
-			(classes collect: [ :each | each name -> (self encodeClass: each) ])
-				asDictionary.
+	classes
+		do: [ :aClass | 
+			(aDictionary at: #classes)
+				at: aClass name
+				put: (self encodeClass: aClass) ]
+		displayingProgress: [ :aClass | 'Exporting class: ' , aClass name ].
 
-	messages valuesDo: [ :each | 
-		each at: #implementors ifPresent: [ :aDict | 
-			each
-				at: #implementors
-				put: (aDict associations collect: [ :anAssoc | 
-						 anAssoc key name -> anAssoc value ]) asDictionary ] ].
-	aDictionary at: #messages put: messages.
-
-	^ aDictionary
+	^ messages
 ]
