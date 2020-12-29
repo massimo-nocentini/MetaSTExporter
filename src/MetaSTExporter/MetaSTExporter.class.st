@@ -22,7 +22,7 @@ walk: anObj
 
 "
 Class {
-	#name : #DocBuilder,
+	#name : #MetaSTExporter,
 	#superclass : #Object,
 	#instVars : [
 		'selectors'
@@ -31,7 +31,7 @@ Class {
 }
 
 { #category : #encoding }
-DocBuilder >> encodeClass: aClass [
+MetaSTExporter >> encodeClass: aClass [
 
 	| aDictionary |
 	aDictionary := Dictionary new.
@@ -44,7 +44,7 @@ DocBuilder >> encodeClass: aClass [
 ]
 
 { #category : #encoding }
-DocBuilder >> encodeCompiledMethod: each ofSelector: aSelector [
+MetaSTExporter >> encodeCompiledMethod: each ofSelector: aSelector [
 
 	^ Dictionary new
 		  at: #argumentNames put: each argumentNames;
@@ -57,7 +57,7 @@ DocBuilder >> encodeCompiledMethod: each ofSelector: aSelector [
 ]
 
 { #category : #encoding }
-DocBuilder >> encodeSelector: aSelector inDictionary: aDictionary [
+MetaSTExporter >> encodeSelector: aSelector inDictionary: aDictionary [
 
 	| compiledMethods selectorDict |
 	selectorDict := (aDictionary at: #messages)
@@ -93,7 +93,7 @@ DocBuilder >> encodeSelector: aSelector inDictionary: aDictionary [
 ]
 
 { #category : #export }
-DocBuilder >> exportInFileReference: aFileReference [
+MetaSTExporter >> exportInFileReference: aFileReference [
 
 	| json messages |
 	json := aFileReference exists
@@ -135,7 +135,7 @@ DocBuilder >> exportInFileReference: aFileReference [
 ]
 
 { #category : #export }
-DocBuilder >> exportWithRepositoryPath: aBlock ofPackage: aPackage [
+MetaSTExporter >> exportWithRepositoryPath: aBlock ofPackage: aPackage [
 
 	| aPath |
 	aPath := aBlock value:
@@ -145,13 +145,13 @@ DocBuilder >> exportWithRepositoryPath: aBlock ofPackage: aPackage [
 ]
 
 { #category : #accessing }
-DocBuilder >> selectors: anObject [
+MetaSTExporter >> selectors: anObject [
 
 	selectors := anObject
 ]
 
 { #category : #evaluating }
-DocBuilder >> valueUsingDictionary: aDictionary [
+MetaSTExporter >> valueUsingDictionary: aDictionary [
 
 	| messages classes |
 	
