@@ -36,7 +36,7 @@ MetaSTExporter >> encodeClass: aClass [
 	| aDictionary |
 	aDictionary := Dictionary new.
 	^ aDictionary
-		  at: #definition put: aClass definition;
+		  at: #definition put: aClass definitionString;
 		  at: #comment put: aClass comment lines;
 		  at: #category put: aClass category;
 		  at: #hash put: aClass hash;
@@ -53,6 +53,7 @@ MetaSTExporter >> encodeCompiledMethod: each ofSelector: aSelector [
 		  at: #body put: each sourceNode body formattedCode lines;
 		  at: #sourceCode put: each sourceNode formattedCode lines;
 		  at: #hash put: each hash;
+		  at: #isTestMethod put: each isTestMethod;
 		  "codeForNoSource"yourself
 ]
 
