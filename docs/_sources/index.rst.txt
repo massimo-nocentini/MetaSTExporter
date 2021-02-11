@@ -8,7 +8,6 @@ Welcome to MetaSTExporter's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    intro.rst
 
