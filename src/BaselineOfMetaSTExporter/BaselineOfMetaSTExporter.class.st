@@ -17,7 +17,9 @@ BaselineOfMetaSTExporter >> scriptExportCoreMessagesForDoc [
 	<script:
 	'BaselineOfMetaSTExporter new scriptExportCoreMessagesForDoc'>
 	^ MetaSTExporter new
-		  selectors: #( selectors: #exportWithRepositoryPath:ofPackage: );
+		  selectors: #( selectors: #exportWithRepositoryPath:ofPackage:
+			     scriptExportCoreMessagesForDoc exportInFileReference:
+			     valueUsingDictionary: );
 		  exportWithRepositoryPath: [ :aPath | 
 			  aPath / 'booklet' / 'source' / 'core-messages.json' ]
 		  ofPackage: self class package
