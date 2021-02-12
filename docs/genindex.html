@@ -29,6 +29,8 @@
 
 
 
+<p class="blurb">A lightweight tool for exporting Smalltalk stuff in a structured JSON.</p>
+
 
 
 
@@ -44,6 +46,8 @@
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx’s side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="self-doc.html">Exporting myself</a></li>
 </ul>
 
 <div class="relations">
@@ -92,6 +96,7 @@
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
  | <a href="#A"><strong>A</strong></a>
+ | <a href="#I"><strong>I</strong></a>
  | <a href="#P"><strong>P</strong></a>
  
 </div>
@@ -99,24 +104,31 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    #currentDo: is understood by
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-0">Continuation class&gt;&gt;#currentDo:</a>
+</li>
+      </ul></li>
+      <li>
     #exportInFileReference: is understood by
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-3">MetaSTExporter&gt;&gt;#exportInFileReference:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-3">MetaSTExporter&gt;&gt;#exportInFileReference:</a>
 </li>
       </ul></li>
       <li>
     #exportWithRepositoryPath:ofPackage: is understood by
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-2">MetaSTExporter&gt;&gt;#exportWithRepositoryPath:ofPackage:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-2">MetaSTExporter&gt;&gt;#exportWithRepositoryPath:ofPackage:</a>
 </li>
       </ul></li>
       <li>
     #scriptExportCoreMessagesForDoc is understood by
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-0">BaselineOfMetaSTExporter&gt;&gt;#scriptExportCoreMessagesForDoc</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-0">BaselineOfMetaSTExporter&gt;&gt;#scriptExportCoreMessagesForDoc</a>
 </li>
       </ul></li>
   </ul></td>
@@ -125,14 +137,23 @@
     #selectors: is understood by
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-1">MetaSTExporter&gt;&gt;#selectors:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-1">MetaSTExporter&gt;&gt;#selectors:</a>
+</li>
+      </ul></li>
+      <li>
+    #value: is understood by
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-2">Association&gt;&gt;#value:</a>
+</li>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-1">BlockClosure&gt;&gt;#value:</a>
 </li>
       </ul></li>
       <li>
     #valueUsingDictionary: is understood by
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-4">MetaSTExporter&gt;&gt;#valueUsingDictionary:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-4">MetaSTExporter&gt;&gt;#valueUsingDictionary:</a>
 </li>
       </ul></li>
   </ul></td>
@@ -142,23 +163,59 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    a Association understands
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-2">#value:</a>
+</li>
+      </ul></li>
+      <li>
     a BaselineOfMetaSTExporter understands
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-0">#scriptExportCoreMessagesForDoc</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-0">#scriptExportCoreMessagesForDoc</a>
+</li>
+      </ul></li>
+      <li>
+    a BlockClosure understands
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-1">#value:</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    a Continuation class understands
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-0">#currentDo:</a>
 </li>
       </ul></li>
       <li>
     a MetaSTExporter understands
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-3">#exportInFileReference:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-3">#exportInFileReference:</a>
 </li>
-        <li><a href="intro.html#pharo-compiledMethod-2">#exportWithRepositoryPath:ofPackage:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-2">#exportWithRepositoryPath:ofPackage:</a>
 </li>
-        <li><a href="intro.html#pharo-compiledMethod-1">#selectors:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-1">#selectors:</a>
 </li>
-        <li><a href="intro.html#pharo-compiledMethod-4">#valueUsingDictionary:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-4">#valueUsingDictionary:</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    :include-comment: (directive option)
+
+      <ul>
+        <li><a href="sphinx-side.html#directive-option-pharo-autoclass-include-comment">pharo:autoclass (directive)</a>, <a href="sphinx-side.html#directive:option-pharo:autoclass-0">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -168,30 +225,65 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    Protocol accessing
+    Package Collections-Support-Associations contains
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-1">MetaSTExporter&gt;&gt;#selectors:</a>
+        <li><a href="sphinx-side.html#pharo-class-2">Association</a>
 </li>
       </ul></li>
       <li>
-    Protocol evaluating
+    Package Kernel-Methods contains
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-4">MetaSTExporter&gt;&gt;#valueUsingDictionary:</a>
+        <li><a href="sphinx-side.html#pharo-class-1">BlockClosure</a>
+</li>
+        <li><a href="sphinx-side.html#pharo-class-0">Continuation_class</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx-side.html#directive-1">pharo:autoclass (directive)</a>, <a href="sphinx-side.html#directive-pharo-autoclass">[1]</a>
+
+      <ul>
+        <li><a href="sphinx-side.html#directive-option-pharo-autoclass-include-comment">:include-comment: (directive option)</a>, <a href="sphinx-side.html#directive:option-pharo:autoclass-0">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="sphinx-side.html#directive-0">pharo:autocompiledmethod (directive)</a>, <a href="sphinx-side.html#directive-pharo-autocompiledmethod">[1]</a>
+</li>
+      <li>
+    Protocol accessing
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-2">Association&gt;&gt;#value:</a>
+</li>
+        <li><a href="self-doc.html#pharo-compiledMethod-1">MetaSTExporter&gt;&gt;#selectors:</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    Protocol evaluating
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-1">BlockClosure&gt;&gt;#value:</a>
+</li>
+        <li><a href="self-doc.html#pharo-compiledMethod-4">MetaSTExporter&gt;&gt;#valueUsingDictionary:</a>
+</li>
+      </ul></li>
+      <li>
     Protocol export
 
       <ul>
-        <li><a href="intro.html#pharo-compiledMethod-0">BaselineOfMetaSTExporter&gt;&gt;#scriptExportCoreMessagesForDoc</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-0">BaselineOfMetaSTExporter&gt;&gt;#scriptExportCoreMessagesForDoc</a>
 </li>
-        <li><a href="intro.html#pharo-compiledMethod-3">MetaSTExporter&gt;&gt;#exportInFileReference:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-3">MetaSTExporter&gt;&gt;#exportInFileReference:</a>
 </li>
-        <li><a href="intro.html#pharo-compiledMethod-2">MetaSTExporter&gt;&gt;#exportWithRepositoryPath:ofPackage:</a>
+        <li><a href="self-doc.html#pharo-compiledMethod-2">MetaSTExporter&gt;&gt;#exportWithRepositoryPath:ofPackage:</a>
+</li>
+      </ul></li>
+      <li>
+    Protocol instance creation
+
+      <ul>
+        <li><a href="sphinx-side.html#pharo-compiledMethod-0">Continuation class&gt;&gt;#currentDo:</a>
 </li>
       </ul></li>
   </ul></td>

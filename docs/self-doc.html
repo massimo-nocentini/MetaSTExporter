@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exporting myself &#8212; MetaSTExporter  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Sphinx’s side" href="sphinx-side.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MetaSTExporter</a></h1>
+
+
+
+<p class="blurb">A lightweight tool for exporting Smalltalk stuff in a structured JSON.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=MetaSTExporter&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx’s side</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exporting myself</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="sphinx-side.html" title="previous chapter">Sphinx’s side</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="sphinx-side.html" title="Previous document">Sphinx’s side</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="exporting-myself">
+<h1>Exporting myself<a class="headerlink" href="#exporting-myself" title="Permalink to this headline">¶</a></h1>
+<p>In order to produce my own documentation, the message</p>
+<span class="target" id="pharo-compiledMethod-0"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-baselineofmetastexporter-scriptexportcoremessagesfordoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&quot;BaselineOfMetaSTExporter, protocol export&quot;
+scriptExportCoreMessagesForDoc
+
+   &lt;script:
+   &#39;BaselineOfMetaSTExporter new scriptExportCoreMessagesForDoc&#39;&gt;
+   ^ MetaSTExporter new
+        selectors: #( selectors: #exportWithRepositoryPath:ofPackage:
+              scriptExportCoreMessagesForDoc );
+        exportWithRepositoryPath: [ :aPath | 
+           aPath / &#39;booklet&#39; / &#39;source&#39; / &#39;core-messages.json&#39; ]
+        ofPackage: self class package
+</pre></div>
+</td></tr></table></div>
+<p>has been defined, where</p>
+<span class="target" id="pharo-compiledMethod-1"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-selectors"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;MetaSTExporter, protocol accessing&quot;</span>
+<span class="nf">selectors:</span> <span class="nv">anObject</span>
+
+   <span class="nv">selectors</span> <span class="o">:=</span> <span class="nv">anObject</span>
+</pre></div>
+</td></tr></table></div>
+<p>and</p>
+<span class="target" id="pharo-compiledMethod-2"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportwithrepositorypath-ofpackage"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;MetaSTExporter, protocol export&quot;</span>
+<span class="nf">exportWithRepositoryPath:</span> <span class="nv">aBlock</span> <span class="nf">ofPackage:</span> <span class="nv">aPackage</span>
+
+   <span class="o">|</span><span class="nv"> aPath </span><span class="o">|</span>
+   <span class="nv">aPath</span> <span class="o">:=</span> <span class="nv">aBlock</span> <span class="nf">value:</span>
+               (<span class="nc">IceRepository</span> <span class="nf">registeredRepositoryIncludingPackage:</span>
+                   <span class="nv">aPackage</span>) <span class="nf">repositoryDirectory</span> <span class="nf">asPath</span><span class="p">.</span>
+   <span class="o">^</span> <span class="bp">self</span> <span class="nf">exportInFileReference:</span> <span class="nv">aPath</span> <span class="nf">asFileReference</span>
+</pre></div>
+</td></tr></table></div>
+<span class="target" id="pharo-compiledMethod-3"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportinfilereference"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;MetaSTExporter, protocol export&quot;</span>
+<span class="nf">exportInFileReference:</span> <span class="nv">aFileReference</span>
+
+   <span class="o">|</span><span class="nv"> json messages </span><span class="o">|</span>
+   <span class="nv">json</span> <span class="o">:=</span> <span class="nv">aFileReference</span> <span class="nf">exists</span>
+              <span class="nb">ifTrue:</span> [ 
+                 <span class="nv">aFileReference</span> <span class="nf">readStreamDo:</span> [ <span class="o">:</span><span class="nv">readStream</span> <span class="o">|</span> 
+                    <span class="nc">STONJSON</span> <span class="nf">fromStream:</span> <span class="nv">readStream</span> ] ]
+              <span class="nb">ifFalse:</span> [ 
+                 <span class="nc">Dictionary</span> <span class="nb">new</span>
+                    <span class="nf">at:</span> <span class="ss">#classes</span> <span class="nf">put:</span> <span class="nc">Dictionary</span> <span class="nb">new</span><span class="p">;</span>
+                    <span class="nf">at:</span> <span class="ss">#messages</span> <span class="nf">put:</span> <span class="nc">Dictionary</span> <span class="nb">new</span><span class="p">;</span>
+                    <span class="nf">yourself</span> ]<span class="p">.</span>
+   (<span class="nv">json</span> <span class="nf">at:</span> <span class="ss">#messages</span>) <span class="nf">valuesDo:</span> [ <span class="o">:</span><span class="nv">aDict</span> <span class="o">|</span> 
+      (<span class="nv">aDict</span> <span class="nf">at:</span> <span class="ss">#implementors</span>) <span class="nf">in:</span> [ <span class="o">:</span><span class="nv">childDict</span> <span class="o">|</span> 
+         <span class="nv">childDict</span> <span class="nf">associations</span>
+            <span class="nf">do:</span> [ <span class="o">:</span><span class="nv">anAssoc</span> <span class="o">|</span> 
+               <span class="o">|</span><span class="nv"> class </span><span class="o">|</span>
+               <span class="nv">class</span> <span class="o">:=</span> (<span class="nv">anAssoc</span> <span class="nf">key</span> <span class="nf">endsWith:</span> <span class="s">&#39; class&#39;</span>)
+                           <span class="nb">ifTrue:</span> [ 
+                              <span class="o">|</span> <span class="nv">className</span> <span class="nf">|</span>
+                              <span class="nv">className</span> <span class="o">:=</span> (<span class="nv">anAssoc</span> <span class="nf">key</span> <span class="nf">splitOn:</span> <span class="s">&#39; class&#39;</span>) <span class="nf">first</span><span class="p">.</span>
+                              (<span class="nc">Smalltalk</span> <span class="nf">at:</span> <span class="nv">className</span> <span class="nf">asSymbol</span>) <span class="nf">class</span> ]
+                           <span class="nb">ifFalse:</span> [ <span class="nc">Smalltalk</span> <span class="nf">at:</span> <span class="nv">anAssoc</span> <span class="nf">key</span> <span class="nf">asSymbol</span> ]<span class="p">.</span>
+               <span class="nv">childDict</span> <span class="nf">at:</span> <span class="nv">class</span> <span class="nf">put:</span> <span class="nv">anAssoc</span> <span class="nf">value</span><span class="p">.</span>
+               <span class="nv">childDict</span> <span class="nf">removeKey:</span> <span class="nv">anAssoc</span> <span class="nf">key</span> ]
+            <span class="nf">displayingProgress:</span> [ <span class="o">:</span><span class="nv">each</span> <span class="o">|</span> <span class="s">&#39;Reified class &#39;</span> <span class="nf">,</span> <span class="nv">each</span> <span class="nf">key</span> ] ] ]<span class="p">.</span>
+   <span class="nv">messages</span> <span class="o">:=</span> <span class="bp">self</span> <span class="nf">valueUsingDictionary:</span> <span class="nv">json</span><span class="p">.</span>
+   <span class="nv">messages</span> <span class="nf">valuesDo:</span> [ <span class="o">:</span><span class="nv">each</span> <span class="o">|</span> 
+      (<span class="nv">each</span> <span class="nf">at:</span> <span class="ss">#implementors</span>) <span class="nf">in:</span> [ <span class="o">:</span><span class="nv">aDict</span> <span class="o">|</span> 
+         <span class="nv">each</span>
+            <span class="nf">at:</span> <span class="ss">#implementors</span>
+            <span class="nf">put:</span> (<span class="nv">aDict</span> <span class="nf">associations</span> <span class="nf">collect:</span> [ <span class="o">:</span><span class="nv">anAssoc</span> <span class="o">|</span> 
+                   <span class="nv">anAssoc</span> <span class="nf">key</span> <span class="nf">name</span> <span class="nf">-&gt;</span> <span class="nv">anAssoc</span> <span class="nf">value</span> ]) <span class="nf">asDictionary</span> ] ]<span class="p">.</span>
+   <span class="nv">json</span> <span class="nf">at:</span> <span class="ss">#messages</span> <span class="nf">put:</span> <span class="nv">messages</span><span class="p">.</span>
+
+   <span class="nv">aFileReference</span> <span class="nf">writeStreamDo:</span> [ <span class="o">:</span><span class="nv">writeStream</span> <span class="o">|</span> 
+      <span class="nc">STONJSON</span> <span class="nf">put:</span> <span class="nv">json</span> <span class="nf">onStreamPretty:</span> <span class="nv">writeStream</span> ]<span class="p">.</span>
+
+   <span class="o">^</span> <span class="nv">json</span>
+</pre></div>
+</td></tr></table></div>
+<span class="target" id="pharo-compiledMethod-4"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-valueusingdictionary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;MetaSTExporter, protocol evaluating&quot;</span>
+<span class="nf">valueUsingDictionary:</span> <span class="nv">aDictionary</span>
+
+   <span class="o">|</span><span class="nv"> messages classes </span><span class="o">|</span>
+   <span class="nv">messages</span> <span class="o">:=</span> <span class="nc">Dictionary</span> <span class="nb">new</span><span class="p">.</span>
+   <span class="nv">selectors</span>
+      <span class="nf">do:</span> [ <span class="o">:</span><span class="nv">eachSelector</span> <span class="o">|</span> 
+         <span class="nv">messages</span>
+            <span class="nf">at:</span> <span class="nv">eachSelector</span>
+            <span class="nf">put:</span> (<span class="bp">self</span> <span class="nf">encodeSelector:</span> <span class="nv">eachSelector</span> <span class="nf">inDictionary:</span> <span class="nv">aDictionary</span>) ]
+      <span class="nf">displayingProgress:</span> [ <span class="o">:</span><span class="nv">each</span> <span class="o">|</span> <span class="s">&#39;Exporting selector: #&#39;</span> <span class="nf">,</span> <span class="nv">each</span> ]<span class="p">.</span>
+
+   <span class="nv">classes</span> <span class="o">:=</span> (<span class="nv">messages</span> <span class="nf">values</span> <span class="nf">collect:</span> [ <span class="o">:</span><span class="nv">each</span> <span class="o">|</span> 
+                  <span class="nv">each</span> <span class="nf">at:</span> <span class="ss">#implementors</span> ]) <span class="nf">flatCollect:</span> <span class="ss">#keys</span> <span class="nf">as:</span> <span class="nc">Set</span><span class="p">.</span>
+   <span class="nv">classes</span>
+      <span class="nf">do:</span> [ <span class="o">:</span><span class="nv">aClass</span> <span class="o">|</span> 
+         (<span class="nv">aDictionary</span> <span class="nf">at:</span> <span class="ss">#classes</span>)
+            <span class="nf">at:</span> <span class="nv">aClass</span> <span class="nf">name</span>
+            <span class="nf">put:</span> (<span class="bp">self</span> <span class="nf">encodeClass:</span> <span class="nv">aClass</span>) ]
+      <span class="nf">displayingProgress:</span> [ <span class="o">:</span><span class="nv">aClass</span> <span class="o">|</span> <span class="s">&#39;Exporting class: &#39;</span> <span class="nf">,</span> <span class="nv">aClass</span> <span class="nf">name</span> ]<span class="p">.</span>
+
+   <span class="o">^</span> <span class="nv">messages</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="sphinx-side.html" title="Previous document">Sphinx’s side</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini.
+      
+      |
+      <a href="_sources/self-doc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

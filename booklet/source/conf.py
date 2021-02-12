@@ -40,6 +40,7 @@ bibtex_bibfiles = []
 # The following configuation values concerns the Pharo domain.
 pharo_json_export_filenames = [
         'source/core-messages.json',
+        'source/example-messages.json',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -75,5 +76,6 @@ html_theme_options = {
     'pre_bg':'white',
     'note_bg':'white',
     'show_powered_by':False,
+    'description': 'A lightweight tool for exporting Smalltalk stuff in a structured JSON.'
 }
 
