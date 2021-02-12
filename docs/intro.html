@@ -14,7 +14,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Sphinx’s side" href="sphinx-side.html" />
+    <link rel="next" title="Sphinx side" href="sphinx-side.html" />
     <link rel="prev" title="MetaSTExporter objects" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -48,8 +48,8 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx’s side</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pharo-side.html">Pharo’s side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pharo-side.html">Pharo side</a></li>
 </ul>
 
 <div class="relations">
@@ -57,7 +57,7 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter"><code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> objects</a></li>
-      <li>Next: <a href="sphinx-side.html" title="next chapter">Sphinx’s side</a></li>
+      <li>Next: <a href="sphinx-side.html" title="next chapter">Sphinx side</a></li>
   </ul></li>
 </ul>
 </div>
@@ -92,7 +92,7 @@
           <a href="index.html" title="Previous document"><code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> objects</a>
         </li>
         <li>
-          <a href="sphinx-side.html" title="Next document">Sphinx’s side</a>
+          <a href="sphinx-side.html" title="Next document">Sphinx side</a>
           &rarr;
         </li>
     </ul>
@@ -109,8 +109,8 @@ been developed in Python and has the goal of documenting Python code.</p>
 <p>For documentation, Sphinx uses to resources:</p>
 <ul class="simple">
 <li><p>A set of imported classes and methods that shall be used and referenced in the documentation</p></li>
-<li><p>A set of markup documents that represent the actual documentation and - where
-needed - refer to the imported classes and methods.</p></li>
+<li><p>A set of markup documents that represent the actual documentation and, where
+needed, refer to the imported classes and methods.</p></li>
 </ul>
 <p>The Sphinx markup is very powerful and supports a lot of directives to
 reference elements of the imported code. Via <a class="reference external" href="https://pygments.org/">Pygments</a>, it also supports syntax highlighting for several 100
@@ -131,15 +131,28 @@ needed metamodel.</p>
 <p>Currently, the MetaSTExporter is not directly integrated in the development
 environment that shall be documented. Instead, we are calling the exporter
 directly via enumerating the selectors to be exported:</p>
-<div class="highlight-smalltalk notranslate"><div class="highlight"><pre><span></span><span class="nc">MetaSTExporter</span> <span class="nb">new</span>
- <span class="nf">selectors:</span> <span class="ss">#(</span> <span class="ss">currentDo:</span> <span class="ss">value:</span> <span class="ss">)</span><span class="p">;</span>
- <span class="nf">exportWithRepositoryPath:</span> [ <span class="o">:</span><span class="nv">aPath</span> <span class="o">|</span> <span class="nv">aPath</span> <span class="nf">/</span> <span class="s">&#39;booklet&#39;</span> <span class="nf">/</span> <span class="s">&#39;source&#39;</span> <span class="nf">/</span> <span class="s">&#39;example-messages.json&#39;</span> ]
-   <span class="nf">ofPackage:</span> <span class="bp">self</span> <span class="nf">class</span> <span class="nf">package</span>
+<span class="target" id="pharo-compiledMethod-0"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-baselineofmetastexporter-manuallyexportexamplemessagesfordoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;BaselineOfMetaSTExporter, protocol export&quot;</span>
+<span class="nf">manuallyExportExampleMessagesForDoc</span>
+
+   <span class="o">^</span> <span class="nc">MetaSTExporter</span> <span class="nb">new</span>
+        <span class="nf">selectors:</span> <span class="ss">#(</span> <span class="ss">currentDo:</span> <span class="ss">value:</span> <span class="ss">)</span><span class="p">;</span>
+        <span class="nf">valueUsingDictionary:</span> (<span class="nc">Dictionary</span> <span class="nb">new</span>
+               <span class="nf">at:</span> <span class="ss">#classes</span> <span class="nf">put:</span> <span class="nc">Dictionary</span> <span class="nb">new</span><span class="p">;</span>
+               <span class="nf">at:</span> <span class="ss">#messages</span> <span class="nf">put:</span> <span class="nc">Dictionary</span> <span class="nb">new</span><span class="p">;</span>
+               <span class="nf">yourself</span>)
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>What also is not yet provided is a first-class representation of the main
 markup sheets that finally are used by the documentation builder. Instead, we
-currently rely on external files. The exporter is - as shown above - configured
+currently rely on external files. The exporter is, as shown above, configured
 in a way to export the Smalltalk code to the expected position in the local
 file tree. The documentation is then generated by calling a script running the
 builder.</p>
@@ -156,7 +169,7 @@ builder.</p>
           <a href="index.html" title="Previous document"><code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> objects</a>
         </li>
         <li>
-          <a href="sphinx-side.html" title="Next document">Sphinx’s side</a>
+          <a href="sphinx-side.html" title="Next document">Sphinx side</a>
           &rarr;
         </li>
     </ul>
@@ -168,7 +181,7 @@ builder.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2021, Massimo Nocentini.
+      &copy;2021, Massimo Nocentini and Richard Uttner.
       
       |
       <a href="_sources/intro.rst.txt"

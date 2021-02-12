@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pharo’s side &#8212; MetaSTExporter  documentation</title>
+    <title>Pharo side &#8212; MetaSTExporter  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Sphinx’s side" href="sphinx-side.html" />
+    <link rel="prev" title="Sphinx side" href="sphinx-side.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -47,15 +47,15 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx’s side</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Pharo’s side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx side</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pharo side</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="sphinx-side.html" title="previous chapter">Sphinx’s side</a></li>
+      <li>Previous: <a href="sphinx-side.html" title="previous chapter">Sphinx side</a></li>
   </ul></li>
 </ul>
 </div>
@@ -87,7 +87,7 @@
     <ul>
         <li>
           &larr;
-          <a href="sphinx-side.html" title="Previous document">Sphinx’s side</a>
+          <a href="sphinx-side.html" title="Previous document">Sphinx side</a>
         </li>
     </ul>
   </nav>
@@ -96,9 +96,10 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pharo-s-side">
-<h1>Pharo’s side<a class="headerlink" href="#pharo-s-side" title="Permalink to this headline">¶</a></h1>
-<p>The examples we have seen in the previous section have been exported by the message</p>
+  <div class="section" id="pharo-side">
+<h1>Pharo side<a class="headerlink" href="#pharo-side" title="Permalink to this headline">¶</a></h1>
+<p>The messages <code class="docutils literal notranslate"><span class="pre">#currentDo:</span></code> and <code class="docutils literal notranslate"><span class="pre">#value:</span></code> with the companion classes we have
+seen in the previous section have been exported by the message</p>
 <span class="target" id="pharo-compiledMethod-0"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-baselineofmetastexporter-scriptexportexamplemessagesfordoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -120,37 +121,9 @@ scriptExportExampleMessagesForDoc
         ofPackage: self class package
 </pre></div>
 </td></tr></table></div>
-<p>and that is all required to produce the JSON file. Of course</p>
-<p>In order to produce my own documentation, the message</p>
-<span class="target" id="pharo-compiledMethod-1"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-baselineofmetastexporter-scriptexportcoremessagesfordoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&quot;BaselineOfMetaSTExporter, protocol export&quot;
-scriptExportCoreMessagesForDoc
-
-   &lt;script:
-   &#39;BaselineOfMetaSTExporter new scriptExportCoreMessagesForDoc&#39;&gt;
-   ^ MetaSTExporter new
-        selectors: #( selectors: #exportWithRepositoryPath:ofPackage:
-              scriptExportCoreMessagesForDoc scriptExportExampleMessagesForDoc
-              exportInFileReference: valueUsingDictionary:
-              currentDo: value: );
-        exportWithRepositoryPath: [ :aPath | 
-           aPath / &#39;booklet&#39; / &#39;source&#39; / &#39;core-messages.json&#39; ]
-        ofPackage: self class package
-</pre></div>
-</td></tr></table></div>
-<p>has been defined, where</p>
-<span class="target" id="pharo-compiledMethod-2"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-selectors"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>and that is all required to produce the JSON file. Take a deeper look at
+messages exchanged there, first a simple accessor</p>
+<span class="target" id="pharo-compiledMethod-1"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-selectors"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c">&quot;MetaSTExporter, protocol accessing&quot;</span>
@@ -159,8 +132,8 @@ scriptExportCoreMessagesForDoc
    <span class="nv">selectors</span> <span class="o">:=</span> <span class="nv">anObject</span>
 </pre></div>
 </td></tr></table></div>
-<p>and</p>
-<span class="target" id="pharo-compiledMethod-3"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportwithrepositorypath-ofpackage"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<p>second, an utility</p>
+<span class="target" id="pharo-compiledMethod-2"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportwithrepositorypath-ofpackage"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -177,7 +150,8 @@ scriptExportCoreMessagesForDoc
    <span class="o">^</span> <span class="bp">self</span> <span class="nf">exportInFileReference:</span> <span class="nv">aPath</span> <span class="nf">asFileReference</span>
 </pre></div>
 </td></tr></table></div>
-<span class="target" id="pharo-compiledMethod-4"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportinfilereference"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>that eventually forwards to</p>
+<span class="target" id="pharo-compiledMethod-3"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-exportinfilereference"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -258,7 +232,8 @@ scriptExportCoreMessagesForDoc
    <span class="o">^</span> <span class="nv">json</span>
 </pre></div>
 </td></tr></table></div>
-<span class="target" id="pharo-compiledMethod-5"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-valueusingdictionary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<p>leaving, in turn, the duty to</p>
+<span class="target" id="pharo-compiledMethod-4"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-metastexporter-valueusingdictionary"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -303,6 +278,34 @@ scriptExportCoreMessagesForDoc
    <span class="o">^</span> <span class="nv">messages</span>
 </pre></div>
 </td></tr></table></div>
+<p>Of course, since <code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> objects are Smalltalk material, they can be used
+to export their own messages by the following</p>
+<span class="target" id="pharo-compiledMethod-5"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-baselineofmetastexporter-scriptexportcoremessagesfordoc"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span>&quot;BaselineOfMetaSTExporter, protocol export&quot;
+scriptExportCoreMessagesForDoc
+
+   &lt;script:
+   &#39;BaselineOfMetaSTExporter new scriptExportCoreMessagesForDoc&#39;&gt;
+   ^ MetaSTExporter new
+        selectors: #( selectors: #exportWithRepositoryPath:ofPackage:
+              scriptExportCoreMessagesForDoc exportInFileReference:
+              valueUsingDictionary: currentDo: value: manuallyExportExampleMessagesForDoc );
+        exportWithRepositoryPath: [ :aPath | 
+           aPath / &#39;booklet&#39; / &#39;source&#39; / &#39;core-messages.json&#39; ]
+        ofPackage: self class package
+</pre></div>
+</td></tr></table></div>
+<p>so that previously we was able to document their messages.</p>
 </div>
 
 
@@ -313,7 +316,7 @@ scriptExportCoreMessagesForDoc
     <ul>
         <li>
           &larr;
-          <a href="sphinx-side.html" title="Previous document">Sphinx’s side</a>
+          <a href="sphinx-side.html" title="Previous document">Sphinx side</a>
         </li>
     </ul>
   </nav>
@@ -324,7 +327,7 @@ scriptExportCoreMessagesForDoc
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2021, Massimo Nocentini.
+      &copy;2021, Massimo Nocentini and Richard Uttner.
       
       |
       <a href="_sources/pharo-side.rst.txt"
