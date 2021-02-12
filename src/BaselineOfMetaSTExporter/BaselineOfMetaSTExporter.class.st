@@ -12,6 +12,17 @@ BaselineOfMetaSTExporter >> baseline: spec [
 ]
 
 { #category : #export }
+BaselineOfMetaSTExporter >> manuallyExportExampleMessagesForDoc [
+
+	^ MetaSTExporter new
+		  selectors: #( currentDo: value: );
+		  valueUsingDictionary: (Dictionary new
+				   at: #classes put: Dictionary new;
+				   at: #messages put: Dictionary new;
+				   yourself)
+]
+
+{ #category : #export }
 BaselineOfMetaSTExporter >> scriptExportCoreMessagesForDoc [
 
 	<script:
@@ -19,7 +30,8 @@ BaselineOfMetaSTExporter >> scriptExportCoreMessagesForDoc [
 	^ MetaSTExporter new
 		  selectors: #( selectors: #exportWithRepositoryPath:ofPackage:
 			     scriptExportCoreMessagesForDoc exportInFileReference:
-			     valueUsingDictionary: currentDo: value: );
+			     valueUsingDictionary: currentDo: value: manuallyExportExampleMessagesForDoc
+			     scriptExportExampleMessagesForDoc );
 		  exportWithRepositoryPath: [ :aPath | 
 			  aPath / 'booklet' / 'source' / 'core-messages.json' ]
 		  ofPackage: self class package
