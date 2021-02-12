@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'MetaSTExporter'
-copyright = '2021, Massimo Nocentini'
+copyright = '2021, Massimo Nocentini and Richard Uttner'
 author = 'Massimo Nocentini'
 
 

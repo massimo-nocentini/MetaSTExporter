@@ -1,6 +1,6 @@
 
-Sphinx's side
-=============
+Sphinx side
+===========
 
 Let's start with importing the message 
 
