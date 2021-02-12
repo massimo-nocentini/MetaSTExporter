@@ -33,6 +33,14 @@ including the class comment; in parallel, the corresponding Sphinx code looks li
 .. rst:directive:: .. pharo:autoclass:: Continuation_class
 
   .. rst:directive:option:: include-comment: yes
+  
+.. note::
+
+  The newly directives are inspired by Python's `.. automethod::
+  <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-automethod>`_
+  and `.. autoclass::
+  <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-autoclass>`_
+  respectively.
 
 In order to explain the body of ``#currentDo:`` we might also need
 

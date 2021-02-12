@@ -11,7 +11,7 @@
 
    intro.rst
    sphinx-side.rst
-   self-doc.rst
+   pharo-side.rst
 
 
 

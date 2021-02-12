@@ -49,7 +49,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx’s side</a></li>
-<li class="toctree-l1"><a class="reference internal" href="self-doc.html">Exporting myself</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pharo-side.html">Pharo’s side</a></li>
 </ul>
 
 <div class="relations">
@@ -104,34 +104,45 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>In Smalltalk, a computation happens through sending messages. Period.  Messages
-are so important to deserve half of browsers’ windows room for reading and
-editing them; therefore, our effort to document a system concentrates on them.</p>
-<p>A message couples a selector with a definition to have many implementations in
-different classes. That allows triggering different computations when the same
-selector is received and understood by objects that are instances of diverse
-classes.</p>
-<p>So our task is to describe a system and solve it by enumerating selectors
-having messages we want to talk about. Occasionally we also want to reference
-the classes that host them, and in general, to have pointers over them to
-quickly jump back and forth.</p>
-<p>A Smalltalk image is a safe sandbox for objects closed to other contexts. We
-stick to Sphinx in favor of plain TeX to write our thoughts. So the two worlds
-have to talk in some way using a serialization-agnostic representation, a JSON
-ultimately.</p>
-<p>On the one hand, a <code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> fulfills this task. We don’t have a
-schema for such an artifact, but we use a structure that had emerged naturally
-to be easy to manipulate.</p>
-<p>On the other hand, a new Sphinx domain consumes that output with two directives
-to import both messages and classes code blocks within vanilla reStructuredText
-source files. Additionally, two roles are also provided to support references.</p>
-<p>We proceed backward,</p>
+<p>When searching for a tool to document Smalltalk code, we found Sphinx that has
+been developed in Python and has the goal of documenting Python code.</p>
+<p>For documentation, Sphinx uses to resources:</p>
 <ul class="simple">
-<li><p>the next section will show how to mix Smalltalk staff in Sphinx documentation,</p></li>
-<li><p>the next but one will show what’s required from the Smalltalk side and, finally,</p></li>
-<li><p>the last one will show how <code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> objects export their implementation
-to describe here themselves, recursively.</p></li>
+<li><p>A set of imported classes and methods that shall be used and referenced in the documentation</p></li>
+<li><p>A set of markup documents that represent the actual documentation and - where
+needed - refer to the imported classes and methods.</p></li>
 </ul>
+<p>The Sphinx markup is very powerful and supports a lot of directives to
+reference elements of the imported code. Via <a class="reference external" href="https://pygments.org/">Pygments</a>, it also supports syntax highlighting for several 100
+languages, among them also C++, Java, and Ruby. Sphinx can deal with arbitrary
+languages that support its well-defined metamodel. So to be able to use Sphinx
+for Smalltalk documentation, we have to implement an exporter creating the
+needed metamodel.</p>
+<p>To provide a prototype for Smalltalk documentation, we implemented</p>
+<span class="target" id="pharo-class-0"></span><div class="highlight-smalltalk notranslate" id="pharo-class-metastexporter"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nc">Object</span> <span class="nf">subclass:</span> <span class="ss">#MetaSTExporter</span>
+	<span class="nf">instanceVariableNames:</span> <span class="s">&#39;selectors&#39;</span>
+	<span class="nf">classVariableNames:</span> <span class="s">&#39;&#39;</span>
+	<span class="nf">package:</span> <span class="s">&#39;MetaSTExporter&#39;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Currently, the MetaSTExporter is not directly integrated in the development
+environment that shall be documented. Instead, we are calling the exporter
+directly via enumerating the selectors to be exported:</p>
+<div class="highlight-smalltalk notranslate"><div class="highlight"><pre><span></span><span class="nc">MetaSTExporter</span> <span class="nb">new</span>
+ <span class="nf">selectors:</span> <span class="ss">#(</span> <span class="ss">currentDo:</span> <span class="ss">value:</span> <span class="ss">)</span><span class="p">;</span>
+ <span class="nf">exportWithRepositoryPath:</span> [ <span class="o">:</span><span class="nv">aPath</span> <span class="o">|</span> <span class="nv">aPath</span> <span class="nf">/</span> <span class="s">&#39;booklet&#39;</span> <span class="nf">/</span> <span class="s">&#39;source&#39;</span> <span class="nf">/</span> <span class="s">&#39;example-messages.json&#39;</span> ]
+   <span class="nf">ofPackage:</span> <span class="bp">self</span> <span class="nf">class</span> <span class="nf">package</span>
+</pre></div>
+</div>
+<p>What also is not yet provided is a first-class representation of the main
+markup sheets that finally are used by the documentation builder. Instead, we
+currently rely on external files. The exporter is - as shown above - configured
+in a way to export the Smalltalk code to the expected position in the local
+file tree. The documentation is then generated by calling a script running the
+builder.</p>
 </div>
 
 

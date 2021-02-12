@@ -73,6 +73,7 @@ html_theme_options = {
     'show_relbars': True,
     'fixed_sidebar':True,
     'page_width':'85%',
+    'sidebarwidth':'30%',
     'pre_bg':'white',
     'note_bg':'white',
     'show_powered_by':False,
