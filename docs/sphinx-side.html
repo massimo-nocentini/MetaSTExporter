@@ -48,8 +48,14 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx side</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx side</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-a-compiledmethod">Importing a <code class="docutils literal notranslate"><span class="pre">CompiledMethod</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-a-class">Importing a <code class="docutils literal notranslate"><span class="pre">Class</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#referencing">Referencing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pharo-side.html">Pharo side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 </ul>
 
 <div class="relations">
@@ -104,6 +110,8 @@
             
   <div class="section" id="sphinx-side">
 <h1>Sphinx side<a class="headerlink" href="#sphinx-side" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="importing-a-compiledmethod">
+<h2>Importing a <code class="docutils literal notranslate"><span class="pre">CompiledMethod</span></code><a class="headerlink" href="#importing-a-compiledmethod" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with importing the message</p>
 <span class="target" id="pharo-compiledMethod-0"></span><div class="highlight-smalltalk notranslate" id="pharo-compiledmethod-continuation-class-currentdo"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -133,6 +141,9 @@
 <li><p>a Continuation class understands,</p></li>
 <li><p>Protocol instance creation.</p></li>
 </ul>
+</div>
+<div class="section" id="importing-a-class">
+<h2>Importing a <code class="docutils literal notranslate"><span class="pre">Class</span></code><a class="headerlink" href="#importing-a-class" title="Permalink to this headline">¶</a></h2>
 <p>We can also import the previously seen <code class="docutils literal notranslate"><span class="pre">Continuation</span></code> class-side</p>
 <span class="target" id="pharo-class-0"></span><div class="highlight-smalltalk notranslate" id="pharo-class-continuation-class"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -327,6 +338,25 @@ the selector <code class="docutils literal notranslate"><span class="pre">#value
 </pre></div>
 </td></tr></table></div>
 <p>quickly.</p>
+</div>
+<div class="section" id="referencing">
+<h2>Referencing<a class="headerlink" href="#referencing" title="Permalink to this headline">¶</a></h2>
+<p>We also can reference both a class that appears in the documentation, as for <a class="reference internal" href="#pharo-class-blockclosure" title="pharo-class-blockclosure"><code class="xref pharo pharo-cref docutils literal notranslate"><span class="pre">BlockClosure</span></code></a> with the role</p>
+<dl class="rst role">
+<dt id="role-pharo-cref">
+<span id="role-pharo:cref"></span><code class="sig-name descname">:pharo:cref:</code><a class="headerlink" href="#role-pharo-cref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts the name of the class we want to reference, between <code class="docutils literal notranslate"><span class="pre">`</span></code> symbols.</p>
+</dd></dl>
+
+<p>and a compiled method, as for <a class="reference internal" href="#pharo-compiledmethod-blockclosure-value" title="pharo-compiledmethod-blockclosure-value"><code class="xref pharo pharo-mref docutils literal notranslate"><span class="pre">BlockClosure&gt;&gt;#value:</span></code></a> with the role</p>
+<dl class="rst role">
+<dt id="role-pharo-mref">
+<span id="role-pharo:mref"></span><code class="sig-name descname">:pharo:mref:</code><a class="headerlink" href="#role-pharo-mref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts the signature <code class="docutils literal notranslate"><span class="pre">α</span> <span class="pre">&gt;&gt;</span> <span class="pre">#β</span></code>, where <code class="docutils literal notranslate"><span class="pre">α</span></code> is a class name and <code class="docutils literal notranslate"><span class="pre">β</span></code> is a
+valid selector, we want to reference, between <code class="docutils literal notranslate"><span class="pre">`</span></code> symbols.</p>
+</dd></dl>
+
+</div>
 </div>
 
 

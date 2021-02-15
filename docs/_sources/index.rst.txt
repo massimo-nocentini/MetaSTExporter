@@ -12,6 +12,7 @@
    intro.rst
    sphinx-side.rst
    pharo-side.rst
+   install.rst
 
 
 

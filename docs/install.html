@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installation &#8212; MetaSTExporter  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Pharo side" href="pharo-side.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MetaSTExporter</a></h1>
+
+
+
+<p class="blurb">A lightweight tool for exporting Smalltalk stuff in a structured JSON.</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=MetaSTExporter&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx-side.html">Sphinx side</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pharo-side.html">Pharo side</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pharo-side.html" title="previous chapter">Pharo side</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="pharo-side.html" title="Previous document">Pharo side</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>To start go to a safe sandbox in your filesystem.</p>
+<p>First, create a Python virtual env,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv venv
+$ <span class="nb">source</span> venv/bin/activate
+$ pip install sphinx
+</pre></div>
+</div>
+<p>Second, install the Sphinx extensions <code class="docutils literal notranslate"><span class="pre">sphinxcontrib.pharodomain</span></code>,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>venv<span class="o">)</span> $ git clone git@github.com:massimo-nocentini/pharodomain.git
+<span class="o">(</span>venv<span class="o">)</span> $ pip install pharodomain
+</pre></div>
+</div>
+<p>Third, load <code class="docutils literal notranslate"><span class="pre">MetaSTExporter</span></code> in an image that suites you,</p>
+<div class="highlight-smalltalk notranslate"><div class="highlight"><pre><span></span><span class="nc">Metacello</span> <span class="nb">new</span>
+  <span class="nf">baseline:</span> <span class="s">&#39;MetaSTExporter&#39;</span><span class="p">;</span>
+  <span class="nf">repository:</span> <span class="s">&#39;github://massimo-nocentini/MetaSTExporter/src&#39;</span><span class="p">;</span>
+  <span class="nf">load</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Fourth, change directory to the Iceberg repo folder of the project you want to document
+and create a new booklet there, for instance by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>venv<span class="o">)</span> $ sphinx-quickstart
+</pre></div>
+</div>
+<p>and update the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="o">...</span><span class="p">,</span>
+      <span class="s1">&#39;sphinxcontrib.pharodomain&#39;</span><span class="p">,</span>
+      <span class="o">...</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">pharo_json_export_filenames</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="o">...</span><span class="p">,</span>
+      <span class="s1">&#39;&lt;filename1-of-export-output.json&gt;&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;&lt;filename2-of-export-output.json&gt;&#39;</span><span class="p">,</span>
+      <span class="o">...</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>then enjoy your doc.</p>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="pharo-side.html" title="Previous document">Pharo side</a>
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini and Richard Uttner.
+      
+      |
+      <a href="_sources/install.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

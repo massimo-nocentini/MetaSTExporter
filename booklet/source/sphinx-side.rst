@@ -2,6 +2,9 @@
 Sphinx side
 ===========
 
+Importing a ``CompiledMethod`` 
+------------------------------
+
 Let's start with importing the message 
 
 .. pharo:autocompiledmethod:: Continuation_class>>#currentDo:
@@ -22,6 +25,9 @@ that also adds an entry to each of the following index labels,
 - ``#currentDo:`` is understood by,
 - a Continuation class understands,
 - Protocol instance creation.
+
+Importing a ``Class``
+---------------------
 
 We can also import the previously seen ``Continuation`` class-side
 
@@ -71,3 +77,19 @@ for instance, hosted in
 .. pharo:autoclass:: Association
 
 quickly.
+
+Referencing
+-----------
+
+We also can reference both a class that appears in the documentation, as for :pharo:cref:`BlockClosure` with the role
+
+.. rst:role:: pharo:cref
+
+  Accepts the name of the class we want to reference, between ````` symbols.
+
+and a compiled method, as for :pharo:mref:`BlockClosure>>#value:` with the role
+
+.. rst:role:: pharo:mref
+
+  Accepts the signature ``α >> #β``, where ``α`` is a class name and ``β`` is a
+  valid selector, we want to reference, between ````` symbols.
