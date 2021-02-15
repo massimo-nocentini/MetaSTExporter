@@ -36,9 +36,10 @@ directly via enumerating the selectors to be exported:
 
 .. code-block:: smalltalk
 
-   MetaSTExporter new selectors: #( currentDo: value: );
-   exportWithRepositoryPath: [ :aPath | aPath / 'booklet' / 'source' /
-   'example-messages.json' ] ofPackage: self class package
+   MetaSTExporter new 
+     selectors: #( currentDo: value: );
+     exportWithRepositoryPath: [ :aPath | aPath / 'booklet' / 'source' / 'example-messages.json' ] 
+       ofPackage: self class package
 
 What also is not yet provided is a first-class representation of the main
 markup sheets that finally are used by the documentation builder. Instead, we

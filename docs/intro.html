@@ -133,9 +133,10 @@ needed metamodel.</p>
 <p>Currently, the MetaSTExporter is not directly integrated in the development
 environment that shall be documented. Instead, we are calling the exporter
 directly via enumerating the selectors to be exported:</p>
-<div class="highlight-smalltalk notranslate"><div class="highlight"><pre><span></span><span class="nc">MetaSTExporter</span> <span class="nb">new</span> <span class="nf">selectors:</span> <span class="ss">#(</span> <span class="ss">currentDo:</span> <span class="ss">value:</span> <span class="ss">)</span><span class="p">;</span>
-<span class="nf">exportWithRepositoryPath:</span> [ <span class="o">:</span><span class="nv">aPath</span> <span class="o">|</span> <span class="nv">aPath</span> <span class="nf">/</span> <span class="s">&#39;booklet&#39;</span> <span class="nf">/</span> <span class="s">&#39;source&#39;</span> <span class="nf">/</span>
-<span class="s">&#39;example-messages.json&#39;</span> ] <span class="nf">ofPackage:</span> <span class="bp">self</span> <span class="nf">class</span> <span class="nf">package</span>
+<div class="highlight-smalltalk notranslate"><div class="highlight"><pre><span></span><span class="nc">MetaSTExporter</span> <span class="nb">new</span>
+  <span class="nf">selectors:</span> <span class="ss">#(</span> <span class="ss">currentDo:</span> <span class="ss">value:</span> <span class="ss">)</span><span class="p">;</span>
+  <span class="nf">exportWithRepositoryPath:</span> [ <span class="o">:</span><span class="nv">aPath</span> <span class="o">|</span> <span class="nv">aPath</span> <span class="nf">/</span> <span class="s">&#39;booklet&#39;</span> <span class="nf">/</span> <span class="s">&#39;source&#39;</span> <span class="nf">/</span> <span class="s">&#39;example-messages.json&#39;</span> ]
+    <span class="nf">ofPackage:</span> <span class="bp">self</span> <span class="nf">class</span> <span class="nf">package</span>
 </pre></div>
 </div>
 <p>What also is not yet provided is a first-class representation of the main
