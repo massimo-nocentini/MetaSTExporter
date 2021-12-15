@@ -129,8 +129,10 @@ MetaSTExporter >> exportInFileReference: aFileReference [
 						 anAssoc key name -> anAssoc value ]) asDictionary ] ].
 	json at: #messages put: messages.
 
-	aFileReference writeStreamDo: [ :writeStream | 
-		STONJSON put: json onStreamPretty: writeStream ].
+	aFileReference
+		ensureDelete;
+		writeStreamDo: [ :writeStream | 
+			STONJSON put: json onStreamPretty: writeStream ].
 
 	^ json
 ]
